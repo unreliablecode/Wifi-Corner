@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+Design by TRUE Software
+https://www.mypublicwifi.com
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<title>81A2AFC9-4576-44F0-8373-E91042190644</title>
+<script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+<link rel="stylesheet"  type="text/css"  href="style-mobile.css" />
+<script type="text/javascript">
+        /*<![CDATA[*/
+
+
+
+function ShowErrorMsg(Error)
+
+{
+
+        $(document).ready(function() {
+          document.getElementById("ErrorMsg").firstChild.data=document.getElementById(Error+"Msg").firstChild.data;
+          document.getElementById("InfoMsgDisplay").style.display = 'none';
+          document.getElementById("ErrorMsgDisplay").style.display = 'block';
+       });
+ }
+
+function ShowInfoMsg(Info)
+
+{
+        $(document).ready(function() {
+          document.getElementById("InfoMsg").firstChild.data=document.getElementById(Info+"Msg").firstChild.data;
+          document.getElementById("InfoMsgDisplay").style.display = 'block';
+       });
+ }
+
+    function AccountCheck()
+  {
+   var chk = false;
+   if (document.getElementById("_prepaidcode").value=='')
+   {
+   ShowErrorMsg('InvalidCode')
+   }
+   else
+   chk=true;
+   return(chk);
+  }
+
+   //6F143793-ACE5-4C04-93EA-C593CD76DC47
+
+    /*]]>*/
+
+
+
+        </script>
+</head>
+
+<body>
+
+<div class="wrap" >
+       <div class="PageTitle">
+         <div class="logo"><img src="img/logo.png" alt=""/></div>
+         <div class="logocaption">You can recharge your account using a valid Voucher Code.</div>
+       </div>
+
+       <div class="NewPage" id="ErrorMsgDisplay" style="display: none;">
+         <div class="MessagePageLogo ErrorPage MessagePageText" id="ErrorMsg"> &nbsp; </div>
+       </div>
+
+       <div class="NewPage" id="WarningMsgDisplay" style="display: none;">
+         <div class="MessagePageLogo WarningPage MessagePageText" id="WarningMsg"> &nbsp; </div>
+       </div>
+
+      <div class="NewPage" id="InfoMsgDisplay" style="display: none;">
+        <div class="MessagePageLogo InfoPage MessagePageText" id="InfoMsg"> &nbsp; </div>
+      </div>
+
+      <noscript>
+        <div  class="NewPage">
+         <div class="MessagePageLogo WarningPage MessagePageText">This page need JavaScript. Please enable JavaScript in your browser.</div>
+        </div>
+     </noscript>
+
+     <div class="NewPage">
+       <form  action="./" method="post"  onsubmit="return AccountCheck();">
+       <div><input type="hidden" name="_action" value="addtime" /></div>
+         <div>
+          <label >Voucher Code:</label>
+          <input tabindex="1"  name="_prepaidcode"  id="_prepaidcode" value="" autocomplete="off" type="text"  />
+        </div>
+        <div>
+          <input  value="Recharge" type="submit" />
+        </div>
+       </form>
+     </div>
+
+
+</div>
+
+  <div style="display: none;">
+
+    <p id="InvalidPasswordMsg">The entered password is invalid. Please try again.</p>
+    <p id="DisabledServiceMsg">Sorry, this service is not currently available. Please try again later.</p>
+    <p id="InvalidCodeMsg">The entered Voucher Code is invalid. Please try again.</p>
+    <p id="SuccessAddTimeMsg">Thank you. Your account has been successfully recharged.</p>
+</div>
+
+</body>
+</html>

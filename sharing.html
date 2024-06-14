@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!--
+Design by TRUE Software
+http://www.my-cybercafe.com
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<title>MyPublicWiFi-FileSharing</title>
+<script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+<link rel="stylesheet"  type="text/css"  href="style-mobile.css" />
+<script type="text/javascript">
+        /*<![CDATA[*/
+
+
+
+function ShowErrorMsg(Error)
+
+{
+
+        $(document).ready(function() {
+          document.getElementById("ErrorMsg").firstChild.data=document.getElementById(Error+"Msg").firstChild.data;
+          document.getElementById("InfoMsgDisplay").style.display = 'none';
+          document.getElementById("ErrorMsgDisplay").style.display = 'block';
+       });
+ }
+
+function ShowInfoMsg(Info)
+
+{
+        $(document).ready(function() {
+          document.getElementById("InfoMsg").firstChild.data=document.getElementById(Info+"Msg").firstChild.data;
+          document.getElementById("InfoMsgDisplay").style.display = 'block';
+       });
+ }
+
+ function HideDialogs()
+
+{
+            $(document).ready(function() {
+           document.getElementById("ErrorMsgDisplay").style.display = 'none';
+           document.getElementById("InfoMsgDisplay").style.display = 'none';
+            });
+ }
+
+
+   function toggleCheckbox(element)
+    {
+     document.getElementById("_freewifibtn").disabled = !element.checked;
+    }
+
+
+
+  $(document).ready(function() {
+
+                          });
+
+                         //6F143793-ACE5-4C04-93EA-C593CD76DC47
+
+    /*]]>*/
+
+        </script>
+
+</head>
+<body>
+
+   <div class="wrap" >
+       <div class="PageTitle">
+         <div class="logo"><img src="img/logo.png" alt=""/></div>
+         <div class="logocaption">True Software Hotspot</div>
+
+       </div>
+
+       <div class="NewPage" id="ErrorMsgDisplay" style="display: none;">
+         <div class="MessagePageLogo ErrorPage MessagePageText" id="ErrorMsg"> &nbsp; </div>
+       </div>
+
+       <div class="NewPage" id="WarningMsgDisplay" style="display: none;">
+         <div class="MessagePageLogo WarningPage MessagePageText" id="WarningMsg"> &nbsp; </div>
+       </div>
+
+      <div class="NewPage" id="InfoMsgDisplay" style="display: none;">
+        <div class="MessagePageLogo InfoPage MessagePageText" id="InfoMsg"> &nbsp; </div>
+      </div>
+
+      <noscript>
+        <div  class="NewPage">
+         <div class="MessagePageLogo WarningPage MessagePageText">This page need JavaScript. Please enable JavaScript in your browser.</div>
+        </div>
+     </noscript>
+      
+      <div class="PageLogin">
+       <div class="PageLoginHeader">
+             Upload Files
+       </div>
+       <div class="PageLoginLogo FileSharingUpPageLogo" >
+           <div class="PageLoginLogoText">
+                You can upload files from your device to the server computer:
+           </div>
+       </div>
+       <form  id="submitupfiles" action="./sharing.html"  method="post" enctype="multipart/form-data">
+              <div class="FileSharingPage FileSharingUpPage">
+                <input type="file" id="upfiles" name="upfiles"        multiple >
+                  <table>
+                    <tr>
+                      <td>
+                       Files:
+                      </td>
+                      <td>
+                        <label id="UploadingDisplay" class="Uploading">Data is being transferred...</label>
+                      </td>
+                    </tr>
+                  </table>
+                  <table>
+                    <tr>
+                      <td>
+                       <input id="upfilenames" value=""  type="text"  readonly/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button type="button" id="selectupfiles">Select your files</button>
+                        <input id="submitbutton" value="Send" type="submit"  disabled />
+                      </td>
+                    </tr>
+                   </table>
+               </div>
+            </form>
+          </div>
+
+      <div class="PageLogin">
+       <div class="PageLoginHeader">
+             Download Files
+       </div>
+        <div class="PageLoginLogo FileSharingDownPageLogo" >
+           <div class="PageLoginLogoText">
+                You can download files from the server computer to your device:
+           </div>
+       </div>
+       <div class="FileSharingPage" >
+           <div>
+             <table class="marginLeft1px" >
+              <tr>
+                 <td style="width:1px"><input id="check-all-checkbox" type="checkbox"/></td>
+                 <td><button   id="multi-download-button" >Download selected files</button></td>
+               </tr>
+              </table>
+            <table class="FileTable" id="FileTable">
+              
+            </table>
+           </div>
+          </div>
+
+      
+
+   </div>
+
+  <script type="module">
+     const delay = milliseconds => new Promise(resolve => {
+                                     setTimeout(resolve, milliseconds);
+                             });
+        const download = async (a) => {
+
+                              a.click();
+                              await delay(100);
+                             };
+        const multiDownload = async() => {
+                          var links = document.getElementById("FileTable").getElementsByTagName("a");
+                          var checkboxes =document.getElementById("FileTable").getElementsByTagName("input");
+                          if (links.length == checkboxes.length)
+                              {
+                                for(var i =0 ; i < links.length ; i++)
+                                 {
+                                  if (checkboxes[i].checked == true)
+                                   {
+                                     download(links[i]);
+                                   }
+                                  }
+                                }
+                              };
+           document.querySelector('#multi-download-button').addEventListener('click', event => {
+                              multiDownload();
+                              });
+
+            document.querySelector('#check-all-checkbox').addEventListener('click', event => {
+
+                              var checkboxes =document.getElementById("FileTable").getElementsByTagName("input");
+                              var checked = document.getElementById("check-all-checkbox").checked;
+                               for(var i =0 ; i < checkboxes.length ; i++)
+                                 {
+                                   checkboxes[i].checked = checked;
+                                  }
+
+                              });
+
+            document.querySelector('#upfiles').addEventListener('change', event => {
+                               HideDialogs();
+                               var filesToRead = document.getElementById("upfiles");
+                               var files = filesToRead.files;
+                               var filenames = document.getElementById("upfilenames");
+                               filenames.value="";
+                               var maxsize=filesToRead.getAttribute("max-size");
+                               if (maxsize)
+                               {
+                               var totalsize=0;
+                               for(var i =0 ; i < files.length ; i++)
+                               {
+                                 totalsize=totalsize+files[i].size;
+                               }
+
+                               if (totalsize > maxsize)
+                                 {
+                                   ShowErrorMsg("ExceededMaxSize");
+                                   filesToRead.value="";
+                                 }
+                               }
+
+                               for(var i =0 ; i < files.length ; i++)
+                               {
+                                filenames.value = filenames.value+files[i].name;
+                                if ((i+1) != files.length)
+                                {
+                                 filenames.value = filenames.value+" ; ";
+                                }
+
+                               }
+
+                                document.getElementById("submitbutton").disabled = (files.length == 0);
+                               
+
+                              });
+
+
+
+ document.querySelector('#selectupfiles').addEventListener('click', event => {
+                              HideDialogs();
+                              document.getElementById("upfiles").click();
+                              });  
+
+
+              document.querySelector('#submitupfiles').addEventListener('submit', event => {
+
+                        document.getElementById("submitbutton").disabled = true;
+                        document.getElementById("UploadingDisplay").style.display = 'block';
+
+              });
+
+     </script>
+  <div style="display: none;">
+     <p id="InvalidPasswordMsg">The entered password is invalid. Please try again.</p>
+     <p id="DisabledServiceMsg">Sorry, this service is not currently available. Please try again later.</p>
+     <p id="SuccessfulUploadMsg">Your data has been successfully transferred. Please check if your files were saved correctly.</p>
+     <p id="ExceededMaxSizeMsg">Your data could not be transferred. The maximum allowed file size has been exceeded.</p>
+
+   </div>
+</body>
+</html>
